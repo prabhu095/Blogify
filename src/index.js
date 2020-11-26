@@ -2,8 +2,9 @@ const path = require('path')
 const express = require('express')
 const postRouter = require('./routers/post')
 const hbs = require('hbs')
-// const { handlebars } = require('hbs');
 mognConnection = require('./db/mongoose')
+var bodyParser = require('body-parser');
+
 
 mognConnection.connection;
 
@@ -28,9 +29,14 @@ app.use(express.static(publicDirectoryPath))
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 
-app.use(postRouter)
+// for parsing application/json
+app.use(bodyParser.json()); 
 
-    
+// for parsing application/xwww-
+app.use(bodyParser.urlencoded({ extended: true })); 
+//form-urlencoded
+
+app.use(postRouter)
 
 app.listen(port, ()=>{
     console.log("Listening on Port "+ port )

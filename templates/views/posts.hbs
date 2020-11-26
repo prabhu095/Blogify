@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+
+<header>
+  <title>Posts</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</header>
+
+{{>header}}
+<ul class="posts_list">
+  {{#each posts}} 
+    <a href="/posts/{{this.id}}">{{this.title}} </a>
+    <p>{{this.body}}<p>
+    </p>  
+  {{/each}}
+{{>footer}}
+</ul>
+
+
+</html>
+

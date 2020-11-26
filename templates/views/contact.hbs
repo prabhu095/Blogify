@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+    {{>header}}
+
+    <form action="/post-contact" method="POST">
+        <input type="text" name="name" placeholder="Enter your name">
+        <input type="number" name="phone" placeholder="Enter your phone number">
+
+        <button type="submit">Contact</button>
+    </form>
+
+    {{>footer}}
+</body>
