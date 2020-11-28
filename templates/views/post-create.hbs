@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<header>
+  <title>Create Post</title>
+  <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+
+</header>
+
+<body class ="post-create">
+    {{>header}}
+    <h3>Create Post</h3>
+    <div class="poster">
+        <form action="/post-create" method="POST">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"  class="form-control" id="title" name="title" placeholder="Your title">
+                <div>
+            <label for="subject">Subject</label>
+            <textarea id="subject"  name="body" placeholder="Your Body" style="height:200px"></textarea>
+
+            <input type="submit" value="POST">
+
+        </form>
+    </div>
+
+    
+
+</body>
+
+

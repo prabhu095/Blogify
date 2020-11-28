@@ -10,10 +10,12 @@
 {{>header}}
 <ul class="posts_list">
   {{#each posts}} 
-    <a href="/posts/{{this.id}}">{{this.title}} </a>
-    <p>{{this.body}}<p>
-    </p>  
+  <div class = "posts_card">
+    <h3><a href="/posts/{{this.id}}">{{this.title}} </a></h3>
+    <p>{{{substr "500" this.body}}}<p>
+  </div>
   {{/each}}
+  
 {{>footer}}
 </ul>
 

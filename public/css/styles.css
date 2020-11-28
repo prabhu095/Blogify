@@ -1,7 +1,9 @@
 body{
     color:#333333;
     font-family: arial;
-    padding: 0 16px;
+    padding: 20px 16px;
+    margin: 0, auto;
+    margin-top: 30px;
 }
 
 header{
@@ -14,6 +16,9 @@ ul.navelement {
     list-style-type: none;
     background-color: #333;
     overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 95%;
 
 }
 
@@ -37,7 +42,49 @@ a.navhref {
 
 
 .potrait  {
-    width: 250px;
+    width: 500px;
     background-color: powderblue;
 
 }
+
+
+.post-create body{
+box-sizing: border-box;
+}
+
+
+.poster{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px
+}
+
+
+#title{
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+#subject {
+    width: 100%;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.posts_card {
+    box-shadow:  0 8px 16px 0 rgba(0,0,0,0.2);   
+    width: 50%;
+    padding: 20px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.posts_card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+

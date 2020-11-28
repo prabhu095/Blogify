@@ -2,9 +2,14 @@
 
 <header>
   <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+
 </header>
 <body>
     {{>header}}
-    {{post.title}}
-    {{post.body}}
+    <h1>{{post.title}}</h1>
+    <p>{{post.body}}</p>
+    <a href="/post-update/{{post._id}}"class="btn btn-info" role="button">Update</a>
+    <a href="/post-delete/{{post._id}}"class="btn btn-danger" role="button">Delete Post</a>
+
 </body>

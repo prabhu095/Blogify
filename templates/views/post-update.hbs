@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<header>
+  <title>Update Post</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</header>
+
+<body class ="post-create">
+    {{>header}}
+    <h3>Update Post</h3>
+    <div class="poster">
+        <form action="/post-update/{{post.id}}" method="POST">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title"  value="{{post.title}}">
+
+            <label for="subject">Subject</label>
+            <textarea id="subject"  name="body" style="height:200px">{{post.body}}</textarea>
+
+            <input type="submit" value="Update">
+
+        </form>
+    </div>
+
+</body>
