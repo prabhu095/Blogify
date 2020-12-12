@@ -5,20 +5,22 @@
 <header>
   <title>Posts</title>
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+
 </header>
+<body>
+  {{>header}}
+  <ul class="posts_list">
+      {{#each posts}} 
+      <div class = "posts_card">
+        <h3><a href="/posts/{{this.id}}">{{this.title}} </a></h3>
+        <p>{{{substr "500" this.body}}}<p>
+      </div>
+      {{/each}}
+  </ul>
+  {{>footer}}
 
-{{>header}}
-<ul class="posts_list">
-  {{#each posts}} 
-  <div class = "posts_card">
-    <h3><a href="/posts/{{this.id}}">{{this.title}} </a></h3>
-    <p>{{{substr "500" this.body}}}<p>
-  </div>
-  {{/each}}
-  
-{{>footer}}
-</ul>
-
+</body>
 
 </html>
 

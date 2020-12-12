@@ -1,9 +1,12 @@
 const path = require('path')
 const express = require('express')
 const postRouter = require('./routers/post')
+const userRoute = require('./routers/user')
 const hbs = require('hbs')
 mognConnection = require('./db/mongoose')
 var bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
 
 
 mognConnection.connection;
@@ -37,6 +40,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //form-urlencoded
 
 app.use(postRouter)
+app.use(userRoute)
+app.use(cookieParser());
+
 
 app.listen(port, ()=>{
     console.log("Listening on Port "+ port )

@@ -1,12 +1,14 @@
 const express = require('express');
-const Post = require('../models/posts');
+const Post = require('../models/post');
+const User = require('../models/user');
 const router = express.Router()
 const hbs = require('hbs')
 const { handlebars } = require('hbs');
+const auth = require('../middleware/auth')
 
 
-// Get All Posts
-router.get('/posts', async(req, res)=>{
+// Get Posts
+router.get('/posts',async(req, res)=>{
     const posts = await Post.find({})
     handlebars.registerHelper('getSensorValue', function() {
         return posts;
@@ -16,7 +18,7 @@ router.get('/posts', async(req, res)=>{
    
 })
 
-// Get Post By Id
+// Get Post
 router.get('/posts/:id', async(req, res)=>{
     const post = await Post.findById(req.params.id)
     res.render('post', {"post": post})
@@ -24,6 +26,8 @@ router.get('/posts/:id', async(req, res)=>{
    
 })
 
+
+// Create Post
 router.get('/post-create', async (req, res)=> res.render('post-create'))
 
 // Create A Post
