@@ -35,17 +35,14 @@ app.set('views', viewsPath)
 // for parsing application/json
 app.use(bodyParser.json()); 
 
-// for parsing application/xwww-
+// // for parsing application/xwww-
 app.use(bodyParser.urlencoded({ extended: true })); 
-//form-urlencoded
+// //form-urlencoded
 
 app.use(postRouter)
 app.use(userRoute)
 app.use(cookieParser());
 
-
 app.listen(port, ()=>{
     console.log("Listening on Port "+ port )
 })
-
-

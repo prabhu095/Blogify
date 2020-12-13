@@ -8,7 +8,8 @@ const auth = require('../middleware/auth')
 
 
 // Get Posts
-router.get('/posts',async(req, res)=>{
+router.get('/posts', auth, async(req, res)=>{
+
     const posts = await Post.find({})
     handlebars.registerHelper('getSensorValue', function() {
         return posts;

@@ -18,6 +18,7 @@ const handleErrors = (err)=>{
     return errors
 }
 
+maxAge = 3*24*60*60
 
 router.get('/signup', async(req, res)=>res.render('sign-up'))
 
@@ -27,6 +28,7 @@ router.post('/signup', async(req, res)=>{
         const user = new User(req.body)
         await user.save()
         const token = await user.generateAuthToken()
+        res.cookie('jwt',token, {httpOnly:true, maxAge: maxAge*1000})
         res.status(201).send({ user, token })
     }
     catch(err){
