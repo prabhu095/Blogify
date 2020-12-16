@@ -6,7 +6,7 @@ const hbs = require('hbs')
 mognConnection = require('./db/mongoose')
 var bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
+const {checkUser} = require('./middleware/auth')
 
 
 mognConnection.connection;
@@ -38,6 +38,8 @@ app.use(bodyParser.json());
 // // for parsing application/xwww-
 app.use(bodyParser.urlencoded({ extended: true })); 
 // //form-urlencoded
+
+app.use(checkUser)
 
 app.use(postRouter)
 app.use(userRoute)

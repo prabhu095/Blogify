@@ -4,13 +4,12 @@ const User = require('../models/user');
 const router = express.Router()
 const hbs = require('hbs')
 const { handlebars } = require('hbs');
-const auth = require('../middleware/auth')
+const { auth, checkUser } = require('../middleware/auth')
 
 
 // Get Posts
 router.get('/posts', auth, async(req, res)=>{
-
-    const posts = await Post.find({})
+        const posts = await Post.find({})
     handlebars.registerHelper('getSensorValue', function() {
         return posts;
       });
@@ -20,7 +19,7 @@ router.get('/posts', auth, async(req, res)=>{
 })
 
 // Get Post
-router.get('/posts/:id', async(req, res)=>{
+router.get('/posts/:id', auth, async(req, res)=>{
     const post = await Post.findById(req.params.id)
     res.render('post', {"post": post})
 
@@ -29,10 +28,10 @@ router.get('/posts/:id', async(req, res)=>{
 
 
 // Create Post
-router.get('/post-create', async (req, res)=> res.render('post-create'))
+router.get('/post-create', auth, async (req, res)=> res.render('post-create'))
 
 // Create A Post
-router.post('/post-create', async(req, res)=>{
+router.post('/post-create', auth, async(req, res)=>{
     const createPost = new Post({ 
         title: req.body.title,
         body: req.body.body
@@ -42,7 +41,7 @@ router.post('/post-create', async(req, res)=>{
 })
 
 
-router.get('/post-update/:id', async(req, res)=>{
+router.get('/post-update/:id', auth, async(req, res)=>{
     const updatePost = await Post.findById(req.params.id)
     res.render('post-update',{
         "post": updatePost 
@@ -50,7 +49,7 @@ router.get('/post-update/:id', async(req, res)=>{
 
 })
 
-router.post('/post-update/:id', async(req, res)=>{
+router.post('/post-update/:id' ,async(req, res)=>{
     try{
         const post = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
         if (! post){
@@ -64,7 +63,7 @@ router.post('/post-update/:id', async(req, res)=>{
 
 })
 
-router.get('/post-delete/:id', async(req, res)=>{
+router.get('/post-delete/:id',async(req, res)=>{
 
     try{
         const post = await Post.findByIdAndDelete(req.params.id)
@@ -80,7 +79,7 @@ router.get('/post-delete/:id', async(req, res)=>{
 })
 
 
-router.get('/contact', (req, res)=>{
+router.get('/contact' ,(req, res)=>{
     res.render("contact")
 })
 
