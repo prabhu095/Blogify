@@ -10,10 +10,6 @@ const { auth, checkUser } = require('../middleware/auth')
 // Get All Posts
 router.get('/posts', async(req, res)=>{
         const posts = await Post.find({})
-    handlebars.registerHelper('getSensorValue', function() {
-        return posts;
-      });
-
     res.render('posts', {"posts": posts}) 
    
 })
@@ -87,7 +83,6 @@ router.get('/contact' ,(req, res)=>{
 
 
 router.post('/post-contact', (req, res)=>{
-    console.log(req.body)
     res.send("Message Received Successfully")
 })
 
@@ -104,6 +99,12 @@ handlebars.registerHelper('substr', function(length, context, options) {
      return context;
     }
 });
+
+handlebars.registerHelper('compareuser', function(post, user, options) {
+    return JSON.stringify(post) === JSON.stringify(user);
+
+});
+
 
 
 module.exports = router

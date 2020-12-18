@@ -24,19 +24,28 @@ const auth = async (req, res, next) =>{
 
 const checkUser = (req, res, next) =>{
     try{
-        const token = req.headers.cookie.substring(4);
-        jwt.verify(token, "Blogify", async(err, decodedToken)=>{
-            if(err){
-                res.locals.user = nulls
-                console.log(err)
-            }
-            else{
-                console.log(decodedToken._id)
-                let user =  await User.findById(decodedToken._id)
-                res.locals.user = user
-                next();
-            }
-        })
+        if (req.headers.cookie){
+            const token = req.headers.cookie.substring(4);
+            jwt.verify(token, "Blogify", async(err, decodedToken)=>{
+                if(err){
+                    res.locals.user = null
+                    console.log(err)
+                }
+                else{
+                    console.log(35)
+                    console.log(decodedToken._id)
+                    let user =  await User.findById(decodedToken._id)
+                    res.locals.user = user
+                    next();
+                }
+            })
+
+        }
+        else{
+            res.locals.user = null
+            next()
+        }
+
         
     }
     catch (e){

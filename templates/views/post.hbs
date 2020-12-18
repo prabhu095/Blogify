@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 
 <header>
   <link rel="stylesheet" href="/css/styles.css">
@@ -9,7 +10,12 @@
     {{>header}}
     <h1>{{post.title}}</h1>
     <p>{{post.body}}</p>
-    <a href="/post-update/{{post._id}}"class="btn btn-info" role="button">Update</a>
-    <a href="/post-delete/{{post._id}}"class="btn btn-danger" role="button">Delete Post</a>
+    {{#if (compareuser post.owner user._id) }}
+        <a href="/post-update/{{post._id}}"class="btn btn-info" role="button">Update</a>
+        <a href="/post-delete/{{post._id}}"class="btn btn-danger" role="button">Delete Post</a>
+    {{/if}}
+
 
 </body>
+
+</html>
