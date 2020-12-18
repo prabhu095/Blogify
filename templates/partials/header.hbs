@@ -7,8 +7,11 @@
         <li class="navlist"><a class="navhref" href="/contact">Contact</a></li>
         {{#if user }}
             <li style ="float:right" class="navlist"><a class="navhref" href="/post-create">Create Post</a></li>
+            <li style ="float:right" class="navlist"><a class="navhref" href="/logout">Logout</a></li>
+
         {{else}}
             <li style ="float:right" class="navlist"><a class="navhref" href="/signup">Sign Up</a></li>
+            <li style ="float:right" class="navlist"><a class="navhref" href="/login">Log In</a></li>
 
         {{/if}}
         

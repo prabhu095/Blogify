@@ -7,8 +7,8 @@ const { handlebars } = require('hbs');
 const { auth, checkUser } = require('../middleware/auth')
 
 
-// Get Posts
-router.get('/posts', auth, async(req, res)=>{
+// Get All Posts
+router.get('/posts', async(req, res)=>{
         const posts = await Post.find({})
     handlebars.registerHelper('getSensorValue', function() {
         return posts;
@@ -18,8 +18,9 @@ router.get('/posts', auth, async(req, res)=>{
    
 })
 
-// Get Post
-router.get('/posts/:id', auth, async(req, res)=>{
+
+// Get a single Post
+router.get('/posts/:id', async(req, res)=>{
     const post = await Post.findById(req.params.id)
     res.render('post', {"post": post})
 
@@ -34,7 +35,8 @@ router.get('/post-create', auth, async (req, res)=> res.render('post-create'))
 router.post('/post-create', auth, async(req, res)=>{
     const createPost = new Post({ 
         title: req.body.title,
-        body: req.body.body
+        body: req.body.body,
+        owner: res.locals.user._id
     })
     await createPost.save()
     res.redirect('posts')

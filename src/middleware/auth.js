@@ -23,10 +23,11 @@ const auth = async (req, res, next) =>{
 }
 
 const checkUser = (req, res, next) =>{
-    const token = req.headers.cookie.substring(4);
     try{
+        const token = req.headers.cookie.substring(4);
         jwt.verify(token, "Blogify", async(err, decodedToken)=>{
             if(err){
+                res.locals.user = nulls
                 console.log(err)
             }
             else{
@@ -39,6 +40,8 @@ const checkUser = (req, res, next) =>{
         
     }
     catch (e){
+        res.locals.user= null
+        next()
         console.log(e)
     }
 }

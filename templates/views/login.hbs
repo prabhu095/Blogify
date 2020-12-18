@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<header>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</header>
+<body>
+    {{>header}}
+        <form class="signup" action="/login" method="POST">
+            <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Enter email">
+                <div class="email error"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+                 <div class="password error"></div>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Log in</button>
+        </form> 
+
+</body>
+    <script>
+        const form = document.querySelector('form')
+        const emailError = document.querySelector('.email.error')
+        const passwordError = document.querySelector('.password.error')
+
+
+        form.addEventListener('submit', async(e)=>{
+            e.preventDefault()
+            
+
+            // Reset errors
+            emailError.textContent = ''
+            passwordError.textContent = ''
+
+
+            const email = form.inputEmail.value
+            const password = form.inputPassword.value
+
+            try{
+                const res = await fetch('/login',{
+                    method: 'POST',
+                    body:JSON.stringify({ email, password }),
+                    headers: {'Content-Type': 'application/json'}
+
+                });
+                const data = await res.json();
+
+                if(data.errors){
+                    emailError.textContent = data.errors.email
+                    passwordError.textContent = data.errors.password
+
+                }
+                if (data.user){
+                    location.assign('/posts ')
+
+                }
+
+
+            }
+            catch(err){
+                console.log(err)    
+            }
+
+        })
+
+    </script>
+
+</html>
